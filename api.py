@@ -2,10 +2,10 @@ from IPython import embed
 import flask
 import json
 from flask_cors import CORS, cross_origin
-import MySQLdb
-from MySQLdb.constants import FIELD_TYPE
 import time
 from functools import wraps
+
+import db
 
 
 app = flask.Flask(__name__)
@@ -17,121 +17,14 @@ app.config['Access-Control-Allow-Origin'] = '*'
 def byte_to_string(byte_string):
     return byte_string.decode("utf-8")
 
-def log_query(query_string):
-    print("[DEBUG] Running: \"{}\"".format(query_string))
-
-
-db_conv = { 
-    FIELD_TYPE.DECIMAL: int,
-    FIELD_TYPE.LONG: int,
-    FIELD_TYPE.FLOAT: int,
-    FIELD_TYPE.DOUBLE: int,
-    FIELD_TYPE.NULL: lambda _: None,
-    FIELD_TYPE.TIMESTAMP: int,
-    FIELD_TYPE.LONGLONG: int,
-    FIELD_TYPE.INT24: int, 
-    FIELD_TYPE.VARCHAR: byte_to_string,
-    FIELD_TYPE.BIT: bool,
-    FIELD_TYPE.JSON: byte_to_string, 
-    FIELD_TYPE.VAR_STRING: byte_to_string,
-    FIELD_TYPE.STRING: byte_to_string,
-    FIELD_TYPE.CHAR: byte_to_string,
-}
-
-
-def retry(
-    exceptions,
-    tries=4,
-    delay=3,
-    backoff=2,
-    logger=None,
-    remediation_func=lambda x: x):
-    """
-    Retry calling the decorated function using an exponential backoff.
-
-    Args:
-        exceptions: The exception to check. may be a tuple of
-            exceptions to check.
-        tries: Number of times to try (not retry) before giving up.
-        delay: Initial delay between retries in seconds.
-        backoff: Backoff multiplier (e.g. value of 2 will double the delay
-            each retry).
-        logger: Logger to use. If None, print.
-    """
-    def deco_retry(f):
-
-        @wraps(f)
-        def f_retry(self, *args, **kwargs):
-            mtries, mdelay = tries, delay
-            while mtries > 1:
-                try:
-                    return f(self, *args, **kwargs)
-                except exceptions as e:
-                    msg = '{}, Remediating and retrying in {} seconds...'.format(e, mdelay)
-                    if logger:
-                        logger.warning(msg)
-                    else:
-                        print(msg)
-                    remediation_func(self)
-                    time.sleep(mdelay)
-                    mtries -= 1
-                    mdelay *= backoff
-            return f(self, *args, **kwargs)
-
-        return f_retry  # true decorator
-
-    return deco_retry
-
-class DB:
-    conn = None
-
-    def connect(self):
-        if self.conn:
-            try:
-                self.conn.close()
-            except Exception:
-                pass
-        self.conn = MySQLdb.connect(
-            host="localhost",user="local",
-            passwd="localpassword",db="jmkridestock",
-            conv=db_conv,
-        )
-    
-    @retry((MySQLdb.OperationalError, MySQLdb.Error), remediation_func=connect)
-    def get_cursor(self):
-        if not self.conn:
-            self.connect()
-        return self.conn.cursor()
-
-    @retry((MySQLdb.OperationalError, MySQLdb.Error), remediation_func=connect)
-    def execute_cursor(self, cursor, sql):
-        cursor.execute(sql)
-  
-    def query(self, sql):
-      log_query(sql)
-
-      cursor = self.get_cursor()
-      self.execute_cursor(cursor, sql)
-  
-      result = []
-      try:
-          result = cursor.fetchall()
-          self.conn.commit()
-          cursor.close()
-      except MySQLdb._exceptions.ProgrammingError:
-          print("execute() failed twice...")
-  
-      return result
-
-db = DB()
-
 def parse_list_to_map(result):
     result_map = {}
-    for row in result:
-        if len(row[1:]) <= 1:
-            result_map[row[0]] = row[1]
-        else:
-            result_map[row[0]] = row[1:]
+    if result:
+        for row in result:
+            if len(row[1:]) <= 1:
+                result_map[row[0]] = row[1]
+            else:
+                result_map[row[0]] = row[1:]
     return result_map
 
 @app.errorhandler(404)
@@ -177,12 +70,12 @@ def python_get_inventory(id):
 
 def python_create_inventory(id, quantity):
     query_string = (
-        "INSERT INTO inventory (id, quantity) VALUE ({id}, {quantity})".format(
+        "INSERT INTO inventory (id, quantity) VALUES ({id}, {quantity})".format(
             id=id,
             quantity=quantity,
         )
     )
-    db.query(query_string)
+    db.query(query_string, write=True)
 
 @app.route('/api/v1/inventory/actions/deposit', methods=['PUT'])
 @cross_origin()
@@ -195,7 +88,7 @@ def api_increment_inventory():
     )
     if request_id and request_quantity:
         query_string = query_string.format(id=request_id, quantity=request_quantity)
-        db.query(query_string)
+        db.query(query_string, write=True)
         return api_get_inventory(python_id=request_id)
     else:
         return page_not_found(None)
@@ -235,6 +128,17 @@ def python_get_part_active(id):
     result = not bool(int(db.query(query_string)[0][0]))
     return result
 
+def python_get_part_id_by_name(name):
+    query_string = 'SELECT id FROM parts WHERE name = ' + name + ';'
+    result = parse_list_to_map(db.query(query_string))
+    if result:
+        return result[0][0]
+
+    return result
+
+def python_part_name_exists(name):
+    return bool(python_get_part_id_by_name(name))
+
 @app.route('/api/v1/parts/actions/modify', methods=['PUT'])
 @cross_origin()
 def api_modify_part():
@@ -263,7 +167,7 @@ def api_modify_part():
 
     for query_string in queries:
         query_string += " WHERE id=" + str(data['id'])
-        db.query(query_string)
+        db.query(query_string, write=True)
     return "True"
 
 
@@ -277,12 +181,19 @@ def api_create_part():
     expected_string = ", ".join(expected_data)
     query_string = (
         "INSERT INTO parts (id, " + expected_string + ") "
-        "VALUE ({id}, \"{name}\", \"{type}\", {active}, \"{color}\", {created_at})"
+        "VALUES ({id}, \"{name}\", \"{type}\", {active}, \"{color}\", {created_at})"
     )
     for key in expected_data:
         if key not in post_data:
             print("CREATE FAILED. MISSING: ", key)
             return page_not_found(None)
+    if python_part_name_exists(post_data['name']):
+        print(
+            "CREATE FAILED. NAME \"{}\" ALREADY EXISTS AS ID {}".format(
+                post_data['name'],
+                python_get_part_id_by_name(post_data['name']),
+            )
+        )
 
     quantity = 0
     if "quantity" in post_data:
@@ -293,10 +204,11 @@ def api_create_part():
             id=next_id,
             name=post_data["name"],
             type=post_data["type"],
-            active=post_data["active"],
+            active=0 if post_data["active"] else 1,
             color=post_data["color"],
             created_at=post_data["created_at"],
-        )
+        ),
+        write=True,
     )
 
     # initialize quantity tracking of new part

@@ -1,0 +1,6 @@
+CREATE TABLE inventory (id INTEGER PRIMARY KEY, quantity INTEGER);
+CREATE TABLE parts (id INTEGER PRIMARY KEY, type TEXT, name TEXT, active BOOLEAN, created_at REAL, img_uri TEXT, color TEXT);
+CREATE TABLE completesets (id INTEGER PRIMARY KEY, img_uri TEXT, name TEXT, awheel1 INTEGER, awheel2 INTEGER, atruck INTEGER, aplate INTEGER, agrip INTEGER, bwheel1 INTEGER, bwheel2 INTEGER, btruck INTEGER, bplate INTEGER, bgrip INTEGER);
+
+INSERT INTO inventory (id, quantity) VALUES (0, 0);
+INSERT INTO parts (id, type, name, active, created_at) VALUES (0, 'other', 'Initial Part', TRUE, 0);
