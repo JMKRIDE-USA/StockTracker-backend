@@ -93,6 +93,22 @@ def api_increment_inventory():
     else:
         return page_not_found(None)
 
+@app.route('/api/v1/inventory/actions/withdraw', methods=['PUT'])
+@cross_origin()
+def api_decrement_inventory():
+    data = json.loads(flask.request.data.decode('utf-8'))
+    request_id = data.get('id')
+    request_quantity = data.get('quantity')
+    query_string = (
+        "UPDATE inventory set quantity=quantity-{quantity} where id={id}"
+    )
+    if request_id and request_quantity:
+        query_string = query_string.format(id=request_id, quantity=request_quantity)
+        db.query(query_string, write=True)
+        return api_get_inventory(python_id=request_id)
+    else:
+        return page_not_found(None)
+
 def python_get_next_UID():
     query_string = "SELECT MAX(id) FROM inventory"
     return(db.query(query_string)[0][0] + 1)
