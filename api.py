@@ -270,12 +270,21 @@ def python_get_next_completeset_UID():
 @app.route('/api/v1/completesets/fetch-all', methods=['GET'])
 @cross_origin()
 def api_all_completesets():
-    return flask.jsonify(db.query("SELECT * FROM completesets"))
+    query_string = (
+        "SELECT id, filename, name, active, created_at, "
+        "awheel1, awheel2, atruck, adeck, agrip, "
+        "bwheel1, bwheel2, btruck, bdeck, bgrip FROM completesets"
+    )
+    return flask.jsonify(db.query(query_string))
 
 @app.route('/api/v1/completesets/fetch', methods=['GET'])
 @cross_origin()
 def api_get_completesets(python_id=None):
-    query_string = "SELECT id, name, active, created_at FROM completesets WHERE "
+    query_string = (
+        "SELECT id, filename, name, active, created_at, "
+        "awheel1, awheel2, atruck, adeck, agrip, "
+        "bwheel1, bwheel2, btruck, bdeck, bgrip FROM completesets WHERE "
+    )
     request_id = flask.request.args.get('id', python_id)
     if request_id:
         query_string += "id=" + str(request_id);
@@ -284,7 +293,7 @@ def api_get_completesets(python_id=None):
         query_string += "id IN ({})".format(",".join(str(i) for i in id_list))
     else:
         return page_not_found(None)
-    return flask.jsonify(parse_list_to_map(db.query(query_string)))
+    return flask.jsonify(db.query(query_string))
 
 @app.route('/api/v1/completesets/actions/create', methods=['PUT'])
 @cross_origin()
@@ -446,6 +455,17 @@ def api_get_completeset_stock():
     limit = min(id_limits)
 
     return flask.jsonify((int(limit[0]), limit[1]))
+
+@app.route('/api/v1/completesets/actions/fetch-image', methods=['GET'])
+@cross_origin()
+def api_get_image():
+    request_filename = flask.request.args.get('filename')
+    if not request_filename:
+        return False
+    return flask.send_file(
+        os.path.join(app.root_path, 'images', request_filename),
+        mimetype='image/jpg',
+    )
 
 
 
