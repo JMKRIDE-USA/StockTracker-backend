@@ -3,4 +3,186 @@ CREATE TABLE parts (id INTEGER PRIMARY KEY, type TEXT, name TEXT, active BOOLEAN
 CREATE TABLE completesets (id INTEGER PRIMARY KEY, filename TEXT, name TEXT, active INTEGER, created_at REAL, awheel1 INTEGER, awheel2 INTEGER, atruck INTEGER, adeck INTEGER, agrip INTEGER, bwheel1 INTEGER, bwheel2 INTEGER, btruck INTEGER, bdeck INTEGER, bgrip INTEGER);
 
 INSERT INTO inventory (id, quantity) VALUES (0, 0);
-INSERT INTO parts (id, type, name, active, created_at) VALUES (0, 'other', 'Initial Part', TRUE, 0);
+INSERT INTO inventory (id, quantity) VALUES (1, 0);
+INSERT INTO inventory (id, quantity) VALUES (2, 0);
+INSERT INTO inventory (id, quantity) VALUES (3, 0);
+INSERT INTO inventory (id, quantity) VALUES (4, 0);
+INSERT INTO inventory (id, quantity) VALUES (5, 0);
+INSERT INTO inventory (id, quantity) VALUES (6, 0);
+INSERT INTO inventory (id, quantity) VALUES (7, 0);
+INSERT INTO inventory (id, quantity) VALUES (8, 0);
+INSERT INTO inventory (id, quantity) VALUES (9, 0);
+
+INSERT INTO inventory (id, quantity) VALUES (10, 0);
+INSERT INTO inventory (id, quantity) VALUES (11, 0);
+INSERT INTO inventory (id, quantity) VALUES (12, 0);
+INSERT INTO inventory (id, quantity) VALUES (13, 0);
+INSERT INTO inventory (id, quantity) VALUES (14, 0);
+INSERT INTO inventory (id, quantity) VALUES (15, 0);
+INSERT INTO inventory (id, quantity) VALUES (16, 0);
+INSERT INTO inventory (id, quantity) VALUES (17, 0);
+INSERT INTO inventory (id, quantity) VALUES (18, 0);
+INSERT INTO inventory (id, quantity) VALUES (19, 0);
+
+INSERT INTO inventory (id, quantity) VALUES (20, 0);
+INSERT INTO inventory (id, quantity) VALUES (21, 0);
+INSERT INTO inventory (id, quantity) VALUES (22, 0);
+INSERT INTO inventory (id, quantity) VALUES (23, 0);
+INSERT INTO inventory (id, quantity) VALUES (24, 0);
+INSERT INTO inventory (id, quantity) VALUES (25, 0);
+INSERT INTO inventory (id, quantity) VALUES (26, 0);
+INSERT INTO inventory (id, quantity) VALUES (27, 0);
+INSERT INTO inventory (id, quantity) VALUES (28, 0);
+INSERT INTO inventory (id, quantity) VALUES (29, 0);
+
+INSERT INTO inventory (id, quantity) VALUES (30, 0);
+INSERT INTO inventory (id, quantity) VALUES (31, 0);
+INSERT INTO inventory (id, quantity) VALUES (32, 0);
+INSERT INTO inventory (id, quantity) VALUES (33, 0);
+INSERT INTO inventory (id, quantity) VALUES (34, 0);
+INSERT INTO inventory (id, quantity) VALUES (35, 0);
+INSERT INTO inventory (id, quantity) VALUES (36, 0);
+INSERT INTO inventory (id, quantity) VALUES (37, 0);
+INSERT INTO inventory (id, quantity) VALUES (38, 0);
+INSERT INTO inventory (id, quantity) VALUES (39, 0);
+
+INSERT INTO inventory (id, quantity) VALUES (40, 0);
+INSERT INTO inventory (id, quantity) VALUES (41, 0);
+INSERT INTO inventory (id, quantity) VALUES (42, 0);
+INSERT INTO inventory (id, quantity) VALUES (43, 0);
+INSERT INTO inventory (id, quantity) VALUES (44, 0);
+INSERT INTO inventory (id, quantity) VALUES (45, 0);
+INSERT INTO inventory (id, quantity) VALUES (46, 0);
+INSERT INTO inventory (id, quantity) VALUES (47, 0);
+INSERT INTO inventory (id, quantity) VALUES (48, 0);
+INSERT INTO inventory (id, quantity) VALUES (49, 0);
+
+INSERT INTO inventory (id, quantity) VALUES (50, 0);
+INSERT INTO inventory (id, quantity) VALUES (51, 0);
+INSERT INTO inventory (id, quantity) VALUES (52, 0);
+INSERT INTO inventory (id, quantity) VALUES (53, 0);
+INSERT INTO inventory (id, quantity) VALUES (54, 0);
+INSERT INTO inventory (id, quantity) VALUES (55, 0);
+INSERT INTO inventory (id, quantity) VALUES (56, 0);
+INSERT INTO inventory (id, quantity) VALUES (57, 0);
+INSERT INTO inventory (id, quantity) VALUES (58, 0);
+INSERT INTO inventory (id, quantity) VALUES (59, 0);
+
+INSERT INTO inventory (id, quantity) VALUES (60, 0);
+INSERT INTO inventory (id, quantity) VALUES (61, 0);
+INSERT INTO inventory (id, quantity) VALUES (62, 0);
+INSERT INTO inventory (id, quantity) VALUES (63, 0);
+INSERT INTO inventory (id, quantity) VALUES (64, 0);
+INSERT INTO inventory (id, quantity) VALUES (65, 0);
+INSERT INTO inventory (id, quantity) VALUES (66, 0);
+INSERT INTO inventory (id, quantity) VALUES (67, 0);
+INSERT INTO inventory (id, quantity) VALUES (68, 0);
+INSERT INTO inventory (id, quantity) VALUES (69, 0);
+
+INSERT INTO inventory (id, quantity) VALUES (70, 0);
+INSERT INTO inventory (id, quantity) VALUES (71, 0);
+INSERT INTO inventory (id, quantity) VALUES (72, 0);
+INSERT INTO inventory (id, quantity) VALUES (73, 0);
+INSERT INTO inventory (id, quantity) VALUES (74, 0);
+INSERT INTO inventory (id, quantity) VALUES (75, 0);
+INSERT INTO inventory (id, quantity) VALUES (76, 0);
+INSERT INTO inventory (id, quantity) VALUES (77, 0);
+INSERT INTO inventory (id, quantity) VALUES (78, 0);
+INSERT INTO inventory (id, quantity) VALUES (79, 0);
+
+INSERT INTO inventory (id, quantity) VALUES (80, 0);
+INSERT INTO inventory (id, quantity) VALUES (81, 0);
+INSERT INTO inventory (id, quantity) VALUES (82, 0);
+
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (0, 'other', 'Initial Part', TRUE, 0, '#e8d151');
+
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (1, 'wheel', 'Red Wheel', TRUE, 0, '#ed4134');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (2, 'wheel', 'Green Wheel', TRUE, 0, '#3df540');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (3, 'wheel', 'Yellow Wheel', TRUE, 0, '#fff712');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (4, 'wheel', 'Black Wheel', TRUE, 0, '#000000');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (5, 'wheel', 'Orange Wheel', TRUE, 0, '#f07c00');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (6, 'wheel', 'Marine Wheel', TRUE, 0, '#004fed');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (7, 'wheel', 'Cyan Wheel', TRUE, 0, '#00a0db');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (8, 'wheel', 'Pink Wheel', TRUE, 0, '#ff4dfc');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (9, 'wheel', 'Lavender Wheel', TRUE, 0, '#ae52ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (10, 'wheel', 'Violet Wheel', TRUE, 0, '#a600ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (11, 'wheel', 'White Wheel', TRUE, 0, '#ffffff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (12, 'wheel', 'Mint Wheel', TRUE, 0, '#3bffb7');
+
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (13, 'truck', 'Red Truck', TRUE, 0, '#ed4134');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (14, 'truck', 'Green Truck', TRUE, 0, '#3df540');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (15, 'truck', 'Yellow Truck', TRUE, 0, '#fff712');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (16, 'truck', 'Black Truck', TRUE, 0, '#000000');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (17, 'truck', 'Orange Truck', TRUE, 0, '#f07c00');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (18, 'truck', 'Marine Truck', TRUE, 0, '#004fed');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (19, 'truck', 'Cyan Truck', TRUE, 0, '#00a0db');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (20, 'truck', 'Pink Truck', TRUE, 0, '#ff4dfc');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (21, 'truck', 'Lavender Truck', TRUE, 0, '#ae52ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (22, 'truck', 'Violet Truck', TRUE, 0, '#a600ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (23, 'truck', 'White Truck', TRUE, 0, '#ffffff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (24, 'truck', 'Chrome Truck', TRUE, 0, '#ffffff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (25, 'truck', 'Mint Truck', TRUE, 0, '#3bffb7');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (26, 'truck', 'Gold Truck', TRUE, 0, '#ffffff');
+
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (27, 'deck', 'Red Deck', TRUE, 0, '#ed4134');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (28, 'deck', 'Green Deck', TRUE, 0, '#3df540');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (29, 'deck', 'Yellow Deck', TRUE, 0, '#fff712');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (30, 'deck', 'Black Deck', TRUE, 0, '#000000');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (31, 'deck', 'Orange Deck', TRUE, 0, '#f07c00');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (32, 'deck', 'Marine Deck', TRUE, 0, '#004fed');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (33, 'deck', 'Cyan Deck', TRUE, 0, '#00a0db');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (34, 'deck', 'Pink Deck', TRUE, 0, '#ff4dfc');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (35, 'deck', 'Lavender Deck', TRUE, 0, '#ae52ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (36, 'deck', 'Violet Deck', TRUE, 0, '#a600ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (37, 'deck', 'White Deck', TRUE, 0, '#ffffff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (38, 'deck', 'Chrome Deck', TRUE, 0, '#ffffff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (39, 'deck', 'Mint Deck', TRUE, 0, '#3bffb7');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (40, 'deck', 'Gold Deck', TRUE, 0, '#ffffff');
+
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (41, 'grip', 'Isamu Orange Grip', TRUE, 0, '#f07c00');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (42, 'grip', 'Isamu Wall Art Grip', TRUE, 0, '#a600ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (43, 'grip', 'Isamu Skull Grip', TRUE, 0, '#004fed');
+
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (44, 'grip', 'Red Snow Grip', TRUE, 0, '#ed4134');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (45, 'grip', 'Pink Snow Grip', TRUE, 0, '#ff4dfc');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (46, 'grip', 'Violet Snow Grip', TRUE, 0, '#a600ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (47, 'grip', 'Orange Snow Grip', TRUE, 0, '#f07c00');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (48, 'grip', 'Green Snow Grip', TRUE, 0, '#3df540');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (49, 'grip', 'Cyan Snow Grip', TRUE, 0, '#00a0db');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (50, 'grip', 'Marine Snow Grip', TRUE, 0, '#004fed');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (51, 'grip', 'Black Snow Grip', TRUE, 0, '#000000');
+
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (52, 'grip', 'White Retro Grip', TRUE, 0, '#ffffff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (53, 'grip', 'Black Retro Grip', TRUE, 0, '#000000');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (54, 'grip', 'Violet Retro Grip', TRUE, 0, '#a600ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (55, 'grip', 'Cyan Retro Grip', TRUE, 0, '#00a0db');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (56, 'grip', 'Green Retro Grip', TRUE, 0, '#3df540');
+
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (57, 'grip', 'Cyan-Yellow-Cyan Spectrum Grip', TRUE, 0, '#00a0db');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (58, 'grip', 'Blue-Violet-Green Spectrum Grip', TRUE, 0, '#a600ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (59, 'grip', 'Pink-Cyan-Violet Spectrum Grip', TRUE, 0, '#ff4dfc');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (60, 'grip', 'Rasta Grip', TRUE, 0, '#fff712');
+
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (61, 'grip', 'Cyan&Black Skate Logo Grip', TRUE, 0, '#00a0db');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (62, 'grip', 'Black&Red Skate Logo Grip', TRUE, 0, '#ed4134');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (63, 'grip', 'Black&Green Skate Logo Grip', TRUE, 0, '#3df540');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (64, 'grip', 'Black&White Skate Logo Grip', TRUE, 0, '#000000');
+
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (65, 'grip', 'Yellow&Black Logo Grip', TRUE, 0, '#fff712');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (66, 'grip', 'Violet&Black Logo Grip', TRUE, 0, '#a600ff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (67, 'grip', 'White&Pink Logo Grip', TRUE, 0, '#ffffff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (68, 'grip', 'White&Gray Logo Grip', TRUE, 0, '#ffffff');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (69, 'grip', 'Pink&White Logo Grip', TRUE, 0, '#ff4dfc');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (70, 'grip', 'Orange&White Logo Grip', TRUE, 0, '#f07c00');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (71, 'grip', 'Blue&Black Logo Grip', TRUE, 0, '#004fed');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (72, 'grip', 'Yellow&Green Logo Grip', TRUE, 0, '#fff712');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (73, 'grip', 'Green&White Logo Grip', TRUE, 0, '#3df540');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (74, 'grip', 'Cyan&Yellow Logo Grip', TRUE, 0, '#00a0db');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (75, 'grip', 'Green&Violet Logo Grip', TRUE, 0, '#3df540');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (76, 'grip', 'Cyan&Black Logo Grip', TRUE, 0, '#00a0db');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (77, 'grip', 'Black&Yellow Logo Grip', TRUE, 0, '#000000');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (78, 'grip', 'Black&White Logo Grip', TRUE, 0, '#000000');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (79, 'grip', 'Black&Red Logo Grip', TRUE, 0, '#000000');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (80, 'grip', 'Black&Violet Logo Grip', TRUE, 0, '#000000');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (81, 'grip', 'Black&Marine Logo Grip', TRUE, 0, '#000000');
+INSERT INTO parts (id, type, name, active, created_at, color) VALUES (82, 'grip', 'Black&Cyan Logo Grip', TRUE, 0, '#000000');
