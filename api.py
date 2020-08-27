@@ -471,5 +471,4 @@ def api_get_image():
 
 
 if __name__ == "__main__":
-    python_get_part_active(1)
-    #app.run()
+    app.run()
