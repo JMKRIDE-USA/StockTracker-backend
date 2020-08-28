@@ -145,7 +145,7 @@ def python_get_next_part_UID():
 @app.route('/api/v1/parts/fetch-all', methods=['GET'])
 @cross_origin()
 def api_all_parts():
-    return flask.jsonify(parse_list_to_map(db.query("SELECT id, type, name, active, created_at, color FROM parts")))
+    return flask.jsonify(db.query("SELECT id, type, name, active, created_at, color FROM parts"))
 
 @app.route('/api/v1/parts/fetch', methods=['GET'])
 @cross_origin()
@@ -161,7 +161,7 @@ def api_get_parts(python_id=None):
         query_string += "type=\"{}\"".format(flask.request.args.get('type'))
     else:
         return page_not_found(None)
-    return flask.jsonify(parse_list_to_map(db.query(query_string)))
+    return flask.jsonify(db.query(query_string))
 
 def python_get_part_active(id):
     query_string = "SELECT (active) FROM parts WHERE id={}".format(id)
