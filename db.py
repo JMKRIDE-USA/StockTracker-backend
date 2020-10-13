@@ -1,5 +1,5 @@
 import sqlite3
-
+import datetime
 from random import randint
 
 DB_PATH = 'inventory.db'
@@ -16,7 +16,7 @@ class DB:
         self.uid = randint(100000, 999999)
 
     def log(self, *args):
-        print("[QUID: {}]".format(self.uid), *args)
+        print("[QUID: {}][{}]".format(self.uid, datetime.datetime.now()), *args)
 
     def log_query(self, query_string):
         self.log("[DEBUG] Running: \"{query_string}\"".format(query_string=query_string))
